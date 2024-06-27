@@ -2,6 +2,7 @@ import NextAuth, { NextAuthConfig } from 'next-auth';
 import { UpstashRedisAdapter } from '@auth/upstash-redis-adapter';
 import google from 'next-auth/providers/google';
 import { Redis } from '@upstash/redis';
+import { fetchRedis } from './helpers';
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,
@@ -39,12 +40,16 @@ export const authConfig: NextAuthConfig = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      const dbUser = (await redis.get(`user:${token.id}`)) as User | null;
+      const dbUserResult = (await fetchRedis('get', `user:${token.id}`)) as
+        | string
+        | null;
 
-      if (!dbUser) {
+      if (!dbUserResult) {
         token.id = user.id!;
         return token;
       }
+
+      const dbUser = JSON.parse(dbUserResult) as User;
 
       return {
         id: dbUser.id,

@@ -1,4 +1,6 @@
 export * from './add/AddFriendButton';
+export * from './friend-requests-sidebar/FriendRequestsSidebarOptions';
+export * from './friend-requests/FriendRequests';
 export * from './icons/Icons';
 export * from './login/LoginForm';
 export * from './Providers';
