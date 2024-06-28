@@ -39,6 +39,11 @@ export const authConfig: NextAuthConfig = {
     }),
   ],
   callbacks: {
+    authorized({ auth }) {
+      const isAuthenticated = !!auth?.user;
+
+      return isAuthenticated;
+    },
     async jwt({ token, user }) {
       const dbUserResult = (await fetchRedis('get', `user:${token.id}`)) as
         | string

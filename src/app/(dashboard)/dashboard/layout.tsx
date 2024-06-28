@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { auth } from '@/auth.config';
 import {
   FriendRequestsSidebarOptions,
@@ -35,7 +35,7 @@ export default async function DashboardLayout({
 
   // just in case
   if (!session) {
-    notFound();
+    redirect('/login');
   }
 
   const unseenRequestCount =
