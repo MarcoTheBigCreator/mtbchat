@@ -1,3 +1,5 @@
+'use server';
+
 import { fetchRedis } from '@/helpers';
 
 export const getIncomingFriendRequests = async (

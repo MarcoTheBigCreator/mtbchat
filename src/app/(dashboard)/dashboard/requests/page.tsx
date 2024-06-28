@@ -12,14 +12,11 @@ export default async function RequestsPage() {
 
   // ids of people who have sent friend requests to this user
   const incomingSenderIds = (await getUnseenRequests(session.user.id)) || [];
-  console.log(`incomingSenderIds: ${incomingSenderIds}`);
 
   // fetch the sender email
   const incomingFriendRequest = await getIncomingFriendRequests(
     incomingSenderIds
   );
-
-  console.log(`incomingFriendRequest: ${incomingFriendRequest}`);
 
   return (
     <main className="pt-8">
