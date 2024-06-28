@@ -6,9 +6,10 @@ import {
   FriendRequestsSidebarOptions,
   Icon,
   Icons,
+  SidebarChatList,
   SignOutButton,
 } from '@/components';
-import { getUnseenRequestCount } from '@/actions';
+import { getFriendsByUserId, getUnseenRequestCount } from '@/actions';
 
 interface SidebarOption {
   id: number;
@@ -38,6 +39,8 @@ export default async function DashboardLayout({
     redirect('/login');
   }
 
+  const friends = await getFriendsByUserId(session.user.id);
+
   const unseenRequestCount =
     (await getUnseenRequestCount(session.user.id)) || 0;
 
@@ -49,12 +52,16 @@ export default async function DashboardLayout({
         </Link>
 
         {/* Chats */}
-        <div className="text-xs font-semibold leading-6 text-gray-400">
-          Your Chats
-        </div>
+        {friends.length > 0 && (
+          <div className="text-xs font-semibold leading-6 text-gray-400">
+            Your Chats
+          </div>
+        )}
         <nav className="flex flex-1 flex-col">
           <ul role="list" className="flex flex-1 flex-col gap-y-7">
-            <li>// chats this user has</li>
+            <li>
+              <SidebarChatList sessionId={session.user.id} friends={friends} />
+            </li>
             <li>
               <div className="text-xs font-semibold leading-6 text-gray-400">
                 Overview
@@ -77,14 +84,13 @@ export default async function DashboardLayout({
                     </li>
                   );
                 })}
+                <li>
+                  <FriendRequestsSidebarOptions
+                    sessionId={session.user.id}
+                    initialUnseenRequestCount={unseenRequestCount}
+                  />
+                </li>
               </ul>
-            </li>
-
-            <li>
-              <FriendRequestsSidebarOptions
-                sessionId={session.user.id}
-                initialUnseenRequestCount={unseenRequestCount}
-              />
             </li>
 
             {/* Profile */}

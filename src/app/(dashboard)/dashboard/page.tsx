@@ -12,7 +12,7 @@ export default async function DashboardPage() {
   return (
     <div>
       <h1>Hello Page</h1>
-      <pre>{JSON.stringify(session)}</pre>
+      {/* <pre>{JSON.stringify(session)}</pre> */}
     </div>
   );
 }
