@@ -1,9 +1,9 @@
 import { notFound, redirect } from 'next/navigation';
 import { auth } from '@/auth.config';
-import { db } from '@/lib';
 import { getChatMessages } from '@/actions';
 import Image from 'next/image';
 import { ChatInput, Messages } from '@/components';
+import { fetchRedis } from '@/helpers';
 
 interface Props {
   params: {
@@ -13,8 +13,6 @@ interface Props {
 
 export default async function ChatPage({ params }: Props) {
   const { chatId } = params;
-
-  const redis = await db();
 
   const session = await auth();
   // just in case middleware fails
@@ -31,7 +29,11 @@ export default async function ChatPage({ params }: Props) {
   }
 
   const chatPartnerId = user.id === userId1 ? userId2 : userId1;
-  const chatPartner = (await redis.get(`user:${chatPartnerId}`)) as User;
+  const chatPartnerRaw = (await fetchRedis(
+    'get',
+    `user:${chatPartnerId}`
+  )) as string;
+  const chatPartner = JSON.parse(chatPartnerRaw) as User;
   const { ok, messages: initialMessages } = await getChatMessages(chatId);
 
   if (!ok) {
