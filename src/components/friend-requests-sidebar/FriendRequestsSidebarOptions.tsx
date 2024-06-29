@@ -19,14 +19,14 @@ export const FriendRequestsSidebarOptions = ({
     initialUnseenRequestCount
   );
 
-  const pusherClient = new PusherClient(
-    process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
-    {
-      cluster: 'us2',
-    }
-  );
-
   useEffect(() => {
+    const pusherClient = new PusherClient(
+      process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
+      {
+        cluster: 'us2',
+      }
+    );
+
     pusherClient.subscribe(
       toPusherKey(`user:${sessionId}:incoming_friend_requests`)
     );
@@ -43,7 +43,7 @@ export const FriendRequestsSidebarOptions = ({
       );
       pusherClient.unbind('incoming_friend_requests', friendRequestsHandler);
     };
-  }, []);
+  }, [sessionId]);
 
   return (
     <Link

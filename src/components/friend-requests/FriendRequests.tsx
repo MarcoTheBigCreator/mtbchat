@@ -21,14 +21,14 @@ export const FriendRequests = ({
     incomingFriendRequests
   );
 
-  const pusherClient = new PusherClient(
-    process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
-    {
-      cluster: 'us2',
-    }
-  );
-
   useEffect(() => {
+    const pusherClient = new PusherClient(
+      process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
+      {
+        cluster: 'us2',
+      }
+    );
+
     pusherClient.subscribe(
       toPusherKey(`user:${sessionId}:incoming_friend_requests`)
     );
@@ -54,7 +54,7 @@ export const FriendRequests = ({
       );
       pusherClient.unbind('incoming_friend_requests', friendRequestsHandler);
     };
-  }, []);
+  }, [sessionId]);
 
   const acceptFriendRequest = async (senderId: string) => {
     await axios.post('/api/friends/accept', { id: senderId });

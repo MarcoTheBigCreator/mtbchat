@@ -1,7 +1,7 @@
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-export const loading = () => {
+export default function LoadingPage() {
   return (
     <div className="flex flex-col h-full items-center">
       <Skeleton className="mb-4" height={40} width={400} />
@@ -80,4 +80,4 @@ export const loading = () => {
       /> */}
     </div>
   );
-};
+}

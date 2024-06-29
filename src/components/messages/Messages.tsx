@@ -23,14 +23,14 @@ export const Messages = ({
 }: MessagesProps) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
 
-  const pusherClient = new PusherClient(
-    process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
-    {
-      cluster: 'us2',
-    }
-  );
-
   useEffect(() => {
+    const pusherClient = new PusherClient(
+      process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
+      {
+        cluster: 'us2',
+      }
+    );
+
     pusherClient.subscribe(toPusherKey(`chat:${chatId}`));
 
     const messageHandler = (message: Message) => {
@@ -43,7 +43,7 @@ export const Messages = ({
       pusherClient.unsubscribe(toPusherKey(`chat:${chatId}`));
       pusherClient.unbind('incoming-message', messageHandler);
     };
-  }, []);
+  }, [chatId]);
 
   const scrollDownRef = useRef<HTMLDivElement | null>(null);
 

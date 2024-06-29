@@ -27,14 +27,14 @@ export const SidebarChatList = ({
 
   const [useenMessages, setUseenMessages] = useState<Message[]>([]);
 
-  const pusherClient = new PusherClient(
-    process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
-    {
-      cluster: 'us2',
-    }
-  );
-
   useEffect(() => {
+    const pusherClient = new PusherClient(
+      process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
+      {
+        cluster: 'us2',
+      }
+    );
+
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:chats`));
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`));
 
