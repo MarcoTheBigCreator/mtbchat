@@ -62,6 +62,12 @@ export async function POST(req: Request) {
       message
     );
 
+    pusherServer.trigger(toPusherKey(`user:${friendId}:chats`), 'new_message', {
+      ...message,
+      senderImg: sender.image,
+      senderName: sender.name,
+    });
+
     // all validations passed so we can save the message
     redis.zadd(`chat:${chatId}:messages`, {
       score: timestamp,

@@ -10,3 +10,4 @@ export * from './sidebar-chat-list/SidebarChatList';
 export * from './sign-out/SignOutButton';
 export * from './ui/Button';
 export * from './ui/GoogleLogo';
+export * from './unseen-chat-toast/UnseenChatToast';
