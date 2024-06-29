@@ -3,13 +3,21 @@
 import { useRef, useState } from 'react';
 import { cn, Message } from '@/lib';
 import { format } from 'date-fns';
+import Image from 'next/image';
 
 interface MessagesProps {
   sessionId: string;
   initialMessages: Message[];
+  sessionImg: string | null | undefined;
+  chatPartner: User;
 }
 
-export const Messages = ({ sessionId, initialMessages }: MessagesProps) => {
+export const Messages = ({
+  sessionId,
+  initialMessages,
+  sessionImg,
+  chatPartner,
+}: MessagesProps) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
 
   const scrollDownRef = useRef<HTMLDivElement | null>(null);
@@ -27,7 +35,7 @@ export const Messages = ({ sessionId, initialMessages }: MessagesProps) => {
       {messages.map((message, index) => {
         const isCurrentUser = message.senderId === sessionId;
         const hasNextMessageFromSameUser =
-          messages[index + 1]?.senderId === messages[index].senderId;
+          messages[index - 1]?.senderId === messages[index].senderId;
 
         return (
           <div
@@ -63,6 +71,23 @@ export const Messages = ({ sessionId, initialMessages }: MessagesProps) => {
                     {formatTimestamp(message.timestamp)}
                   </span>
                 </span>
+              </div>
+              <div
+                className={cn('relative w-6 h-6', {
+                  'order-2': isCurrentUser,
+                  'order-1': !isCurrentUser,
+                  invisible: hasNextMessageFromSameUser,
+                })}
+              >
+                <Image
+                  fill
+                  src={
+                    isCurrentUser ? (sessionImg as string) : chatPartner.image
+                  }
+                  alt="Profile picture"
+                  referrerPolicy="no-referrer"
+                  className="rounded-full"
+                />
               </div>
             </div>
           </div>
