@@ -1,6 +1,6 @@
 import { auth } from '@/auth.config';
 import { fetchRedis } from '@/helpers';
-import { addFriendValidator, db } from '@/lib';
+import { addFriendValidator, db, pusherServer, toPusherKey } from '@/lib';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -56,7 +56,13 @@ export async function POST(req: Request) {
       });
     }
 
-    // valid request
+    // valid request send friend request
+    await pusherServer.trigger(
+      toPusherKey(`user:${idToAdd}:incoming_friend_requests`),
+      'incoming_friend_requests',
+      { senderId: session.user.id, senderEmail: session.user.email }
+    );
+
     const redis = await db();
 
     redis.sadd(`user:${idToAdd}:incoming_friend_requests`, session.user.id);

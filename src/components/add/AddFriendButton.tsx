@@ -58,7 +58,7 @@ export const AddFriendButton = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm">
       <label
         htmlFor="email"
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className="block text-base font-medium leading-6 text-gray-900"
       >
         Add friend by e-mail
       </label>
@@ -70,9 +70,9 @@ export const AddFriendButton = () => {
           placeholder="you@example.com"
         />
         <Button>Add</Button>
-        <p className="mt-1 text-sm text-red-600">{errors.email?.message}</p>
+        <p className="mt-1 text-base text-red-600">{errors.email?.message}</p>
         {showSuccessState && (
-          <p className="mt-1 text-sm text-green-600">Friend request sent!</p>
+          <p className="mt-1 text-base text-green-600">Friend request sent!</p>
         )}
       </div>
     </form>
