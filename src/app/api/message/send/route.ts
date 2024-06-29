@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import { fetchRedis } from '@/helpers';
 import { auth } from '@/auth.config';
-import { db, Message, messageValidator } from '@/lib';
+import {
+  db,
+  Message,
+  messageValidator,
+  pusherServer,
+  toPusherKey,
+} from '@/lib';
 import { nanoid } from 'nanoid';
 
 export async function POST(req: Request) {
@@ -48,6 +54,13 @@ export async function POST(req: Request) {
     };
 
     const message = messageValidator.parse(messageData);
+
+    // notify all connected clients
+    pusherServer.trigger(
+      toPusherKey(`chat:${chatId}`),
+      'incoming-message',
+      message
+    );
 
     // all validations passed so we can save the message
     redis.zadd(`chat:${chatId}:messages`, {

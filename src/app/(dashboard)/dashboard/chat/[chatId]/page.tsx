@@ -65,6 +65,7 @@ export default async function ChatPage({ params }: Props) {
       </div>
       <Messages
         sessionId={session.user.id}
+        chatId={chatId}
         initialMessages={initialMessages}
         sessionImg={session.user.image}
         chatPartner={chatPartner}
