@@ -23,10 +23,9 @@ export const getChatMessages = async (chatId: string) => {
       messages,
     };
   } catch (error) {
-    console.error(error);
-
     return {
       ok: false,
+      messages: [],
     };
   }
 };
