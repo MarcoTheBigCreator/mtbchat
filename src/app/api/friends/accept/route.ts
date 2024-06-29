@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { fetchRedis } from '@/helpers';
 import { auth } from '@/auth.config';
 import { z } from 'zod';
-import { db } from '@/lib';
+import { db, pusherServer, toPusherKey } from '@/lib';
 
 export async function POST(req: Request) {
   try {
@@ -40,6 +40,13 @@ export async function POST(req: Request) {
     if (!hasFriendRequest) {
       return new NextResponse('Friend request not found', { status: 404 });
     }
+
+    // notify added user
+    pusherServer.trigger(
+      toPusherKey(`user:${idToAdd}:friends`),
+      'new_friend',
+      {}
+    );
 
     // accept the friend request both ways
     redis.sadd(`user:${session.user.id}:friends`, idToAdd);
