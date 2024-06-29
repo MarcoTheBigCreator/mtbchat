@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { auth } from '@/auth.config';
 import { getIncomingFriendRequests, getUnseenRequests } from '@/actions';
 import { FriendRequests } from '@/components';
+import { titleFont } from '@/config/fonts';
 
 export default async function RequestsPage() {
   const session = await auth();
@@ -20,7 +21,9 @@ export default async function RequestsPage() {
 
   return (
     <main className="pt-8">
-      <h1 className="font-bold text-5xl mb-8">Add a friend</h1>
+      <h1 className={`${titleFont.className} font-bold text-5xl mb-8`}>
+        Friend Requests
+      </h1>
       <div className="flex flex-col gap-4">
         <FriendRequests
           sessionId={session.user.id}

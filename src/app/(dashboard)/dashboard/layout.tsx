@@ -10,6 +10,7 @@ import {
   SignOutButton,
 } from '@/components';
 import { getFriendsByUserId, getUnseenRequestCount } from '@/actions';
+import { titleFont } from '@/config/fonts';
 
 interface SidebarOption {
   id: number;
@@ -47,13 +48,21 @@ export default async function DashboardLayout({
   return (
     <div className="w-full flex h-screen">
       <div className="flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-x-auto md:overflow-x-hidden overflow-y-auto border-r border-gray-200 bg-white px-6">
-        <Link href="/dashboard" className="flex h-16 shrink-0 items-center">
-          <Icons.Send className="h-8 w-auto text-indigo-600" />
+        <Link
+          href="/dashboard"
+          className="flex h-16 shrink-0 items-center my-4 group"
+        >
+          <Icons.Logo className="h-12 w-12 text-black group-hover:text-violet-700 transition-all duration-200 ease-in-out" />
+          <span
+            className={`${titleFont.className} font-bold text-3xl pl-1 text-black group-hover:text-violet-700 transition-all duration-200 ease-in-out`}
+          >
+            MTBChat
+          </span>
         </Link>
 
         {/* Chats */}
         {friends.length > 0 && (
-          <div className="text-xs font-semibold leading-6 text-gray-400">
+          <div className="text-sm font-semibold leading-6 text-gray-400">
             Your Chats
           </div>
         )}
@@ -63,7 +72,7 @@ export default async function DashboardLayout({
               <SidebarChatList sessionId={session.user.id} friends={friends} />
             </li>
             <li>
-              <div className="text-xs font-semibold leading-6 text-gray-400">
+              <div className="text-sm font-semibold leading-6 text-gray-400">
                 Overview
               </div>
               <ul role="list" className="-mx-2 mt-2 space-y-1">
@@ -74,9 +83,9 @@ export default async function DashboardLayout({
                     <li key={option.id}>
                       <Link
                         href={option.href}
-                        className="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                        className="text-gray-700 hover:text-violet-700 hover:bg-gray-50 group flex gap-3 rounded-md p-2 text-base leading-6 font-semibold"
                       >
-                        <span className="text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white">
+                        <span className="text-gray-400 border-gray-200 group-hover:border-violet-700 group-hover:text-violet-700 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white">
                           <Icon className="h-4 w-4" />
                         </span>
                         <span className="truncate">{option.name}</span>
@@ -95,7 +104,7 @@ export default async function DashboardLayout({
 
             {/* Profile */}
             <li className="-mx-6 mt-auto flex items-center">
-              <div className="flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900">
+              <div className="flex flex-1 items-center gap-x-4 px-4 py-3 text-base font-semibold leading-6 text-gray-900">
                 <div className="relative h-8 w-8 bg-gray-50">
                   <Image
                     fill

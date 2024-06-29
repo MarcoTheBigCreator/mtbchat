@@ -6,6 +6,7 @@ import { chatHrefConstructor, toPusherKey } from '@/lib';
 import PusherClient from 'pusher-js';
 import toast from 'react-hot-toast';
 import { UnseenChatToast } from '../unseen-chat-toast/UnseenChatToast';
+import Image from 'next/image';
 
 interface SidebarChatListProps {
   sessionId: string;
@@ -90,18 +91,28 @@ export const SidebarChatList = ({
         return (
           <li key={friend.id}>
             <a
-              className="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
               href={`/dashboard/chat/${chatHrefConstructor(
                 sessionId,
                 friend.id
               )}`}
+              className="text-gray-700 hover:text-violet-700 hover:bg-gray-50 group flex gap-3 rounded-md p-2 text-base leading-6 font-semibold"
             >
-              {friend.name}
-              {unseenMessagesCount > 0 && (
-                <div className="bg-indigo-600 font-medium text-xs text-white w-4 h-4 rounded-full flex items-center justify-center">
-                  {unseenMessagesCount}
-                </div>
-              )}
+              <Image
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg "
+                referrerPolicy="no-referrer"
+                alt={`${friend.name} profile picture`}
+                src={friend.image}
+                width={100}
+                height={100}
+              />
+              <span className="truncate">
+                {friend.name}
+                {unseenMessagesCount > 0 && (
+                  <div className="bg-violet-700 font-medium text-xs text-white w-4 h-4 rounded-full flex items-center justify-center">
+                    {unseenMessagesCount}
+                  </div>
+                )}
+              </span>
             </a>
           </li>
         );

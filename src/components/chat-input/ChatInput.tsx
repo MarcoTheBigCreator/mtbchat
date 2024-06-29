@@ -33,7 +33,7 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
 
   return (
     <div className="border-t border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
-      <div className="relative flex-1 overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+      <div className="relative flex-1 overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-violet-700">
         <TextareaAutosize
           ref={textareaRef}
           onKeyDown={(e) => {
@@ -59,9 +59,14 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
         </div>
         <div className="absolute right-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
           <div className="flex-shrink-0">
-            <Button isLoading={isLoading} onClick={sendMessage} type="submit">
+            <Button
+              className="bg-trasparent hover:bg-violet-700 group transition-all duration-100 ease-in-out"
+              isLoading={isLoading}
+              onClick={sendMessage}
+              type="submit"
+            >
               {!isLoading ? (
-                <Icons.Send className="h-6 w-auto text-white" />
+                <Icons.Send className="h-6 w-auto text-violet-700 group-hover:text-white" />
               ) : (
                 <span className="animate-pulse">Sending...</span>
               )}
