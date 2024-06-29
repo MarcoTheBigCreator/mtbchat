@@ -6,18 +6,13 @@ import {
   FriendRequestsSidebarOptions,
   Icon,
   Icons,
+  MobileChatLayout,
   SidebarChatList,
   SignOutButton,
 } from '@/components';
 import { getFriendsByUserId, getUnseenRequestCount } from '@/actions';
 import { titleFont } from '@/config/fonts';
-
-interface SidebarOption {
-  id: number;
-  name: string;
-  href: string;
-  icon: Icon;
-}
+import { SidebarOption } from '@/types/typings';
 
 const sidebarOptions: SidebarOption[] = [
   {
@@ -47,16 +42,25 @@ export default async function DashboardLayout({
 
   return (
     <div className="w-full flex h-screen">
-      <div className="flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-x-auto md:overflow-x-hidden overflow-y-auto border-r border-gray-200 bg-white px-6">
+      <div className="md:hidden">
+        <MobileChatLayout
+          friends={friends}
+          session={session}
+          sidebarOptions={sidebarOptions}
+          unseenRequestCount={unseenRequestCount}
+        />
+      </div>
+
+      <div className="hidden md:flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-x-auto md:overflow-x-hidden overflow-y-auto border-r border-gray-200 bg-white px-6">
         <Link
           href="/dashboard"
           className="flex h-16 shrink-0 items-center my-4 group"
         >
-          <Icons.Logo className="h-12 w-12 text-black group-hover:text-violet-700 transition-all duration-200 ease-in-out" />
+          <Icons.Logo className="h-10 w-10 text-black group-hover:text-violet-700 transition-all duration-200 ease-in-out" />
           <span
-            className={`${titleFont.className} font-bold text-3xl pl-1 text-black group-hover:text-violet-700 transition-all duration-200 ease-in-out`}
+            className={`${titleFont.className} font-normal text-3xl pl-1 text-black group-hover:text-violet-700 transition-all duration-200 ease-in-out`}
           >
-            MTBChat
+            MTBCHAT
           </span>
         </Link>
 

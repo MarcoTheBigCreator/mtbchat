@@ -5,6 +5,7 @@ export * from './friend-requests/FriendRequests';
 export * from './icons/Icons';
 export * from './login/LoginForm';
 export * from './messages/Messages';
+export * from './mobile-chat-layout/MobileChatLayout';
 export * from './Providers';
 export * from './sidebar-chat-list/SidebarChatList';
 export * from './sign-out/SignOutButton';
