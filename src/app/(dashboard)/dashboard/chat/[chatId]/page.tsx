@@ -56,12 +56,14 @@ export default async function ChatPage({ params }: Props) {
             </div>
           </div>
           <div className="flex flex-col leading-tight">
-            <div className="text-xl flex items-center">
+            <div className="text-lg md:text-xl flex items-center">
               <span className="text-gray-700 mr-3 font-semibold">
                 {chatPartner.name}
               </span>
             </div>
-            <span className="text-sm text-gray-600">{chatPartner.email}</span>
+            <span className="text-xs md:text-sm text-gray-600">
+              {chatPartner.email}
+            </span>
           </div>
         </div>
       </div>
