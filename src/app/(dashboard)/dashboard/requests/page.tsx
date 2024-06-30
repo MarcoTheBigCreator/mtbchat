@@ -20,7 +20,7 @@ export default async function RequestsPage() {
   );
 
   return (
-    <main className="pt-8">
+    <main className="pt-8 overflow-y-auto">
       <h1 className={`${titleFont.className} font-bold text-5xl mb-8`}>
         Friend Requests
       </h1>
