@@ -42,7 +42,7 @@ export const MobileChatLayout = ({
   }, [pathname]);
 
   return (
-    <div className="fixed bg-zinc-50 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4">
+    <div className="fixed bg-zinc-50 border-b border-zinc-200 top-0 z-50 inset-x-0 py-2 px-4">
       <div className="w-full flex justify-between items-center">
         <Link href="/dashboard">
           <Icons.Logo className="h-[2rem] w-[2rem] text-black mx-4" />
