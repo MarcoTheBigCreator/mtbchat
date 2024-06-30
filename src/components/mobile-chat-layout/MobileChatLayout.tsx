@@ -45,7 +45,7 @@ export const MobileChatLayout = ({
     <div className="fixed bg-zinc-50 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4">
       <div className="w-full flex justify-between items-center">
         <Link href="/dashboard">
-          <Icons.Logo className="h-[2rem] w-[2rem] text-black" />
+          <Icons.Logo className="h-[2rem] w-[2rem] text-black mx-4" />
         </Link>
         <span className={`${titleFont.className} text-black text-xl`}>
           MTBCHAT
@@ -60,8 +60,8 @@ export const MobileChatLayout = ({
       <Dialog as="div" className="relative z-10" open={open} onClose={setOpen}>
         <div className="fixed inset-0" />
 
-        <div className="fixed inset-0 overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden">
+        <div className="fixed inset-0 overflow-y-hidden">
+          <div className="absolute inset-0 overflow-y-hidden">
             <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
               <TransitionChild
                 enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -72,7 +72,7 @@ export const MobileChatLayout = ({
                 leaveTo="-translate-x-full"
               >
                 <DialogPanel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col overflow-hidden bg-white py-6 shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-auto bg-white py-6 shadow-xl">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <DialogTitle className="text-lg font-semibold leading-6 text-gray-900">
@@ -93,18 +93,14 @@ export const MobileChatLayout = ({
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {/* Content */}
 
-                      {friends.length > 0 ? (
-                        <div className="text-sm font-semibold leading-6 text-gray-400">
-                          Your chats
-                        </div>
-                      ) : null}
-
-                      <nav className="flex flex-1 flex-col">
-                        <ul
-                          role="list"
-                          className="flex flex-1 flex-col gap-y-7"
-                        >
+                      <ul role="list" className="h-full grid grid-rows-3">
+                        <div className="space-y-7">
                           <li>
+                            {friends.length > 0 ? (
+                              <div className="text-sm font-semibold leading-6 text-gray-400 mb-2">
+                                Your chats
+                              </div>
+                            ) : null}
                             <SidebarChatList
                               friends={friends}
                               sessionId={session.user.id}
@@ -143,37 +139,37 @@ export const MobileChatLayout = ({
                               </li>
                             </ul>
                           </li>
+                        </div>
 
-                          <li className="-ml-6 mt-auto flex items-center">
-                            <div className="flex flex-1 items-center gap-x-4 px-6 py-3 text-base font-semibold leading-6 text-gray-900">
-                              <div className="relative h-8 w-8 bg-gray-50">
-                                <Image
-                                  fill
-                                  referrerPolicy="no-referrer"
-                                  className="rounded-full"
-                                  src={session.user.image || ''}
-                                  alt="Your profile picture"
-                                />
-                              </div>
-
-                              <span className="sr-only">Your profile</span>
-                              <div className="flex flex-col">
-                                <span aria-hidden="true">
-                                  {session.user.name}
-                                </span>
-                                <span
-                                  className="text-xs text-zinc-400"
-                                  aria-hidden="true"
-                                >
-                                  {session.user.email}
-                                </span>
-                              </div>
+                        <li className="-ml-6 mt-auto flex items-center row-span-2">
+                          <div className="flex flex-1 items-center gap-x-4 px-6 py-3 text-base font-semibold leading-6 text-gray-900">
+                            <div className="relative h-8 w-8 bg-gray-50">
+                              <Image
+                                fill
+                                referrerPolicy="no-referrer"
+                                className="rounded-full"
+                                src={session.user.image || ''}
+                                alt="Your profile picture"
+                              />
                             </div>
 
-                            <SignOutButton className="h-full aspect-square" />
-                          </li>
-                        </ul>
-                      </nav>
+                            <span className="sr-only">Your profile</span>
+                            <div className="flex flex-col">
+                              <span aria-hidden="true">
+                                {session.user.name}
+                              </span>
+                              <span
+                                className="text-xs text-zinc-400"
+                                aria-hidden="true"
+                              >
+                                {session.user.email}
+                              </span>
+                            </div>
+                          </div>
+
+                          <SignOutButton className="h-full aspect-square" />
+                        </li>
+                      </ul>
 
                       {/* content end */}
                     </div>
