@@ -26,7 +26,36 @@ export default async function Home() {
         -1
       )) as string[];
 
-      const lastMessage = JSON.parse(lastMessageRaw) as Message;
+      if (lastMessageRaw === undefined) {
+        console.warn(`No last message found for chat with friend ${friend.id}`);
+        return {
+          ...friend,
+          lastMessage: {
+            id: '',
+            senderId: '',
+            receiverId: '',
+            text: '',
+            timestamp: 0,
+          },
+        };
+      }
+
+      let lastMessage;
+      try {
+        lastMessage = JSON.parse(lastMessageRaw) as Message;
+      } catch (error) {
+        console.error(
+          `Error parsing last message for chat with friend ${friend.id}:`,
+          error
+        );
+        lastMessage = {
+          id: '',
+          senderId: '',
+          receiverId: '',
+          text: 'Error loading message',
+          timestamp: 0,
+        };
+      }
 
       return {
         ...friend,
