@@ -41,7 +41,7 @@ export default async function ChatPage({ params }: Props) {
   }
 
   return (
-    <div className="flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-6rem)] pt-8 md:pt-0">
+    <div className="flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-2rem)] overflow-y-hidden md:max-h-[calc(100vh-5rem)]">
       <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
         <div className="relative flex items-center space-x-4">
           <div className="relative">
@@ -65,15 +65,13 @@ export default async function ChatPage({ params }: Props) {
           </div>
         </div>
       </div>
-      <div className="overflow-hidden">
-        <Messages
-          sessionId={session.user.id}
-          chatId={chatId}
-          initialMessages={initialMessages}
-          sessionImg={session.user.image}
-          chatPartner={chatPartner}
-        />
-      </div>
+      <Messages
+        sessionId={session.user.id}
+        chatId={chatId}
+        initialMessages={initialMessages}
+        sessionImg={session.user.image}
+        chatPartner={chatPartner}
+      />
       <ChatInput chatId={chatId} chatPartner={chatPartner} />
     </div>
   );
