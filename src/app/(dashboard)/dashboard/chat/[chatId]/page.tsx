@@ -65,13 +65,15 @@ export default async function ChatPage({ params }: Props) {
           </div>
         </div>
       </div>
-      <Messages
-        sessionId={session.user.id}
-        chatId={chatId}
-        initialMessages={initialMessages}
-        sessionImg={session.user.image}
-        chatPartner={chatPartner}
-      />
+      <div className="overflow-hidden">
+        <Messages
+          sessionId={session.user.id}
+          chatId={chatId}
+          initialMessages={initialMessages}
+          sessionImg={session.user.image}
+          chatPartner={chatPartner}
+        />
+      </div>
       <ChatInput chatId={chatId} chatPartner={chatPartner} />
     </div>
   );
