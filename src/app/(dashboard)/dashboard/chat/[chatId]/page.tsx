@@ -41,7 +41,7 @@ export default async function ChatPage({ params }: Props) {
   }
 
   return (
-    <div className="justify-between flex flex-col mt-8">
+    <div className="flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-5rem)]">
       <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
         <div className="relative flex items-center space-x-4">
           <div className="relative">
