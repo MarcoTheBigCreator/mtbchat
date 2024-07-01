@@ -93,7 +93,7 @@ export const MobileChatLayout = ({
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {/* Content */}
 
-                      <ul role="list" className="grid grid-rows-2 gap-y-44">
+                      <ul role="list" className="grid grid-rows-2 gap-y-56">
                         <div className="space-y-7">
                           <li>
                             {friends.length > 0 ? (
