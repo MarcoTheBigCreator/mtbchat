@@ -99,7 +99,7 @@ export const SidebarChatList = ({
                 sessionId,
                 friend.id
               )}`}
-              className="text-gray-700 hover:text-violet-700 hover:bg-gray-50 group flex gap-3 rounded-md p-2 text-base leading-6 font-semibold"
+              className="text-gray-700 hover:text-violet-700 hover:bg-gray-50 group flex items-center gap-3 rounded-md p-2 text-base leading-6 font-semibold"
             >
               <Image
                 className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg "
@@ -109,14 +109,12 @@ export const SidebarChatList = ({
                 width={100}
                 height={100}
               />
-              <span className="truncate">
-                {friend.name}
-                {unseenMessagesCount > 0 && (
-                  <div className="bg-violet-700 font-medium text-xs text-white w-4 h-4 rounded-full flex items-center justify-center">
-                    {unseenMessagesCount}
-                  </div>
-                )}
-              </span>
+              <span className="truncate">{friend.name}</span>
+              {unseenMessagesCount > 0 && (
+                <div className="bg-violet-700 font-medium text-xs text-white w-4 h-4 rounded-full flex items-center justify-center">
+                  {unseenMessagesCount}
+                </div>
+              )}
             </a>
           </li>
         );
