@@ -70,11 +70,11 @@ export const AddFriendButton = () => {
           placeholder="you@example.com"
         />
         <Button>Add</Button>
-        <p className="mt-1 text-base text-red-600">{errors.email?.message}</p>
-        {showSuccessState && (
-          <p className="mt-1 text-base text-green-600">Friend request sent!</p>
-        )}
       </div>
+      <p className="mt-1 text-base text-red-600">{errors.email?.message}</p>
+      {showSuccessState && (
+        <p className="mt-1 text-base text-green-600">Friend request sent!</p>
+      )}
     </form>
   );
 };

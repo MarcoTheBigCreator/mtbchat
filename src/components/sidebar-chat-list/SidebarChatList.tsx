@@ -109,12 +109,12 @@ export const SidebarChatList = ({
                 width={100}
                 height={100}
               />
-              <span className="truncate">{friend.name}</span>
-              {unseenMessagesCount > 0 && (
-                <div className="bg-violet-700 font-medium text-xs text-white w-4 h-4 rounded-full flex items-center justify-center">
+              {friend.name}
+              {unseenMessagesCount > 0 ? (
+                <div className="bg-violet-700 font-medium text-xs text-white w-4 h-4 rounded-full flex justify-center items-center">
                   {unseenMessagesCount}
                 </div>
-              )}
+              ) : null}
             </a>
           </li>
         );

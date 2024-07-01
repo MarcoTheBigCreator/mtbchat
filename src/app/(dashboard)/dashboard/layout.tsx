@@ -131,7 +131,9 @@ export default async function DashboardLayout({
           </ul>
         </nav>
       </div>
-      <aside className="container pt-16 md:py-12 w-full">{children}</aside>
+      <aside className="md:container max-h-screen pt-16 md:py-4 w-full">
+        {children}
+      </aside>
     </div>
   );
 }
