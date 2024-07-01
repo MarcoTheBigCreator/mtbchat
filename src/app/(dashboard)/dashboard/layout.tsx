@@ -41,7 +41,7 @@ export default async function DashboardLayout({
     (await getUnseenRequestCount(session.user.id)) || 0;
 
   return (
-    <div className="w-full flex h-screen pt-16 md:py-12">
+    <div className="w-full flex h-screen">
       <div className="md:hidden">
         <MobileChatLayout
           friends={friends}
@@ -131,7 +131,9 @@ export default async function DashboardLayout({
           </ul>
         </nav>
       </div>
-      <aside className="container w-full">{children}</aside>
+      <aside className="md:container max-h-screen pt-16 md:py-4 w-full">
+        {children}
+      </aside>
     </div>
   );
 }

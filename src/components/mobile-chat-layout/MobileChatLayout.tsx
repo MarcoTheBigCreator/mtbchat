@@ -73,7 +73,7 @@ export const MobileChatLayout = ({
               >
                 <DialogPanel className="pointer-events-auto w-screen max-w-md">
                   <div className="flex h-full flex-col overflow-y-auto bg-white py-6 shadow-xl">
-                    <div className="px-4 sm:px-6">
+                    <div className="px-4 sm:px-6 pt-16">
                       <div className="flex items-start justify-between">
                         <DialogTitle className="text-lg font-semibold leading-6 text-gray-900">
                           Dashboard
@@ -81,7 +81,7 @@ export const MobileChatLayout = ({
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
                             onClick={() => setOpen(false)}
                           >
                             <span className="sr-only">Close panel</span>
@@ -93,7 +93,7 @@ export const MobileChatLayout = ({
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {/* Content */}
 
-                      <ul role="list" className="h-full grid grid-rows-3">
+                      <ul role="list" className="grid grid-rows-3">
                         <div className="space-y-7">
                           <li>
                             {friends.length > 0 ? (
@@ -118,9 +118,9 @@ export const MobileChatLayout = ({
                                   <li key={option.name}>
                                     <Link
                                       href={option.href}
-                                      className="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-base leading-6 font-semibold"
+                                      className="text-gray-700 hover:text-violet-700 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-base leading-6 font-semibold"
                                     >
-                                      <span className="text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white">
+                                      <span className="text-gray-400 border-gray-200 group-hover:border-violet-700 group-hover:text-violet-700 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white">
                                         <Icon className="h-4 w-4" />
                                       </span>
                                       <span className="truncate">
