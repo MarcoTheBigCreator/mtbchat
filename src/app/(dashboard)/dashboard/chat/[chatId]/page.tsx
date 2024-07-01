@@ -2,7 +2,7 @@ import { notFound, redirect } from 'next/navigation';
 import { auth } from '@/auth.config';
 import { getChatMessages } from '@/actions';
 import Image from 'next/image';
-import { ChatInput, Messages } from '@/components';
+import { Messages } from '@/components';
 import { fetchRedis } from '@/helpers';
 
 interface Props {
@@ -41,7 +41,7 @@ export default async function ChatPage({ params }: Props) {
   }
 
   return (
-    <div className="flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-5rem)] overflow-y-auto">
+    <div className="flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-15rem)] md:max-h-[calc(100vh-10rem)]">
       <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200 px-4">
         <div className="relative flex items-center space-x-4">
           <div className="relative">
@@ -74,7 +74,6 @@ export default async function ChatPage({ params }: Props) {
         sessionImg={session.user.image}
         chatPartner={chatPartner}
       />
-      <ChatInput chatId={chatId} chatPartner={chatPartner} />
     </div>
   );
 }

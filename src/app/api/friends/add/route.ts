@@ -8,6 +8,8 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
+    const redis = await db();
+
     const { email: emailToAdd } = addFriendValidator.parse(body.email);
     const idToAdd = (await fetchRedis(
       'get',
@@ -57,15 +59,15 @@ export async function POST(req: Request) {
     }
 
     // valid request send friend request
-    await pusherServer.trigger(
-      toPusherKey(`user:${idToAdd}:incoming_friend_requests`),
-      'incoming_friend_requests',
-      { senderId: session.user.id, senderEmail: session.user.email }
-    );
+    await Promise.all([
+      await pusherServer.trigger(
+        toPusherKey(`user:${idToAdd}:incoming_friend_requests`),
+        'incoming_friend_requests',
+        { senderId: session.user.id, senderEmail: session.user.email }
+      ),
 
-    const redis = await db();
-
-    redis.sadd(`user:${idToAdd}:incoming_friend_requests`, session.user.id);
+      redis.sadd(`user:${idToAdd}:incoming_friend_requests`, session.user.id),
+    ]);
 
     return new NextResponse('Friend request sent', { status: 200 });
   } catch (error) {
