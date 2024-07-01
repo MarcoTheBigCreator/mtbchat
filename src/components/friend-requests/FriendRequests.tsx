@@ -82,28 +82,32 @@ export const FriendRequests = ({
         <p className="text-base text-zinc-500">Nothing to show here...</p>
       ) : (
         friendRequests.map((request) => (
-          <div key={request.senderId} className="flex gap-3 items-center">
-            <UserPlus className="text-black" />
-            <p className="font-medium text-base">{request.senderEmail}</p>
-            <button
-              onClick={() => acceptFriendRequest(request.senderId)}
-              aria-label="accept friend"
-              className="grid place-items-center transition border-l-2 border-gray-300"
-            >
-              <span className="ml-3 font-semibold text-black text-sm hover:text-violet-700 hover:underline">
-                Accept
-              </span>
-            </button>
+          <div key={request.senderId} className="md:flex items-center">
+            <div className="flex gap-1 md:mr-3">
+              <UserPlus className="text-black pb-1" />
+              <p className="font-medium text-base">{request.senderEmail}</p>
+            </div>
+            <div className="flex gap-4 mt-2 ml-4 md:m-0">
+              <button
+                onClick={() => acceptFriendRequest(request.senderId)}
+                aria-label="accept friend"
+                className="grid place-items-center transition md:border-l-2 md:border-gray-300"
+              >
+                <span className="ml-3 font-semibold text-black text-sm hover:text-violet-700 hover:underline">
+                  Accept
+                </span>
+              </button>
 
-            <button
-              onClick={() => denyFriendRequest(request.senderId)}
-              aria-label="deny friend"
-              className="grid place-items-center transition"
-            >
-              <span className="font-semibold text-black text-sm hover:text-red-500 hover:underline">
-                Deny
-              </span>
-            </button>
+              <button
+                onClick={() => denyFriendRequest(request.senderId)}
+                aria-label="deny friend"
+                className="grid place-items-center transition"
+              >
+                <span className="font-semibold text-black text-sm hover:text-red-500 hover:underline">
+                  Deny
+                </span>
+              </button>
+            </div>
           </div>
         ))
       )}
