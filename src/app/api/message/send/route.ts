@@ -56,23 +56,28 @@ export async function POST(req: Request) {
     const message = messageValidator.parse(messageData);
 
     // notify all connected clients
-    pusherServer.trigger(
-      toPusherKey(`chat:${chatId}`),
-      'incoming-message',
-      message
-    );
+    await Promise.all([
+      pusherServer.trigger(
+        toPusherKey(`chat:${chatId}`),
+        'incoming-message',
+        message
+      ),
+      pusherServer.trigger(
+        toPusherKey(`user:${friendId}:chats`),
+        'new_message',
+        {
+          ...message,
+          senderImg: sender.image,
+          senderName: sender.name,
+        }
+      ),
 
-    pusherServer.trigger(toPusherKey(`user:${friendId}:chats`), 'new_message', {
-      ...message,
-      senderImg: sender.image,
-      senderName: sender.name,
-    });
-
-    // all validations passed so we can save the message
-    redis.zadd(`chat:${chatId}:messages`, {
-      score: timestamp,
-      member: JSON.stringify(message),
-    });
+      // all validations passed so we can save the message
+      redis.zadd(`chat:${chatId}:messages`, {
+        score: timestamp,
+        member: JSON.stringify(message),
+      }),
+    ]);
 
     return new NextResponse('OK', { status: 200 });
   } catch (error) {
