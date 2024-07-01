@@ -93,7 +93,7 @@ export const MobileChatLayout = ({
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {/* Content */}
 
-                      <ul role="list" className="grid grid-rows-3">
+                      <ul role="list" className="grid grid-rows-2">
                         <div className="space-y-7">
                           <li>
                             {friends.length > 0 ? (
@@ -141,7 +141,7 @@ export const MobileChatLayout = ({
                           </li>
                         </div>
 
-                        <li className="-ml-6 mt-auto flex items-center row-span-2">
+                        <li className="-ml-6 mt-auto flex items-center">
                           <div className="flex flex-1 items-center gap-x-4 px-6 py-3 text-base font-semibold leading-6 text-gray-900">
                             <div className="relative h-8 w-8 bg-gray-50">
                               <Image
