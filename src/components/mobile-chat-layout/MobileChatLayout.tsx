@@ -52,7 +52,7 @@ export const MobileChatLayout = ({
         </span>
         <Button
           onClick={() => setOpen(true)}
-          className="bg-transparent on hover:bg-transparent text-black gap-4"
+          className="bg-transparent hover:bg-transparent text-black gap-4"
         >
           <Menu className="h-8 w-8" />
         </Button>
@@ -93,7 +93,7 @@ export const MobileChatLayout = ({
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {/* Content */}
 
-                      <ul role="list" className="grid grid-rows-2">
+                      <ul role="list" className="grid grid-rows-2 gap-y-44">
                         <div className="space-y-7">
                           <li>
                             {friends.length > 0 ? (
