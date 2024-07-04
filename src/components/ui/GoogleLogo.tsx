@@ -5,7 +5,7 @@ export const GoogleLogo = () => {
       aria-hidden="true"
       focusable="false"
       data-prefix="fab"
-      data-icon="github"
+      data-icon="google"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"

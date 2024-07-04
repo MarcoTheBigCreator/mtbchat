@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthConfig } from 'next-auth';
 import { UpstashRedisAdapter } from '@auth/upstash-redis-adapter';
 import google from 'next-auth/providers/google';
+import github from 'next-auth/providers/github';
 import { Redis } from '@upstash/redis';
 import { fetchRedis } from './helpers';
 
@@ -24,6 +25,21 @@ function getGoogleCredentials() {
   return { clientId, clientSecret };
 }
 
+function getGithubCredentials() {
+  const clientId = process.env.GITHUB_CLIENT_ID;
+  const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+
+  if (!clientId || clientId.length === 0) {
+    throw new Error('GITHUB_CLIENT_ID is not set');
+  }
+
+  if (!clientSecret || clientSecret.length === 0) {
+    throw new Error('GITHUB_CLIENT_SECRET is not set');
+  }
+
+  return { clientId, clientSecret };
+}
+
 export const authConfig: NextAuthConfig = {
   adapter: UpstashRedisAdapter(redis),
   session: {
@@ -36,6 +52,10 @@ export const authConfig: NextAuthConfig = {
     google({
       clientId: getGoogleCredentials().clientId,
       clientSecret: getGoogleCredentials().clientSecret,
+    }),
+    github({
+      clientId: getGithubCredentials().clientId,
+      clientSecret: getGithubCredentials().clientSecret,
     }),
   ],
   callbacks: {

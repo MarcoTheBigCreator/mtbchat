@@ -11,5 +11,6 @@ export * from './sidebar-chat-list/SidebarChatList';
 export * from './sign-out/SignOutButton';
 export * from './theme-switch/ThemeSwitch';
 export * from './ui/Button';
+export * from './ui/GitHubLogo';
 export * from './ui/GoogleLogo';
 export * from './unseen-chat-toast/UnseenChatToast';
