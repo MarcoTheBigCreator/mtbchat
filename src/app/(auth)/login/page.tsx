@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         'Login to create an account and chat with your friends in real-time!',
       images: [
-        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720072100/Portfolio/ygq5rnuz9vvsnuzvpq2l.png`,
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720080439/Portfolio/tkmkd6jxcwrbjqkdif1x.png`,
       ],
     },
     twitter: {
@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         'Login to create an account and chat with your friends in real-time!',
       images: [
-        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720072100/Portfolio/ygq5rnuz9vvsnuzvpq2l.png`,
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720080439/Portfolio/tkmkd6jxcwrbjqkdif1x.png`,
       ],
     },
   };
