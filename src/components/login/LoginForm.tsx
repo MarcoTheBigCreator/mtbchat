@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import { Button, GoogleLogo } from '@/components';
+import { cn } from '@/lib';
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);

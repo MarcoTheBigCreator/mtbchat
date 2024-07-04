@@ -1,7 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Providers } from '@/components';
+import { ThemeProviders, ToasterProviders } from '@/components';
 import { poppins } from '@/config/fonts';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,9 +15,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className="bg-white dark:bg-neutral-900"
+    >
       <body className={poppins.className}>
-        <Providers>{children}</Providers>
+        <ThemeProviders>
+          <ToasterProviders>{children}</ToasterProviders>
+        </ThemeProviders>
+        <Analytics />
       </body>
     </html>
   );

@@ -21,7 +21,9 @@ export default async function RequestsPage() {
 
   return (
     <main className="pt-8 overflow-y-auto p-[1.25rem]">
-      <h1 className={`${titleFont.className} font-bold text-5xl mb-8`}>
+      <h1
+        className={`${titleFont.className} text-black dark:text-white font-bold text-5xl mb-8`}
+      >
         Friend Requests
       </h1>
       <div className="flex flex-col gap-4">

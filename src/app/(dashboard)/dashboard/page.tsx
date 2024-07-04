@@ -75,7 +75,7 @@ export default async function Home() {
         friendsWithLastMessage.map((friend) => (
           <div
             key={friend.id}
-            className="relative bg-zinc-50 border border-zinc-200 p-3 rounded-md"
+            className="relative bg-zinc-50 hover:bg-zinc-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 border border-zinc-200 dark:border-neutral-700 dark:hover:border-neutral-600 p-3 rounded-md mb-3"
           >
             <div className="absolute right-4 inset-y-0 flex items-center">
               <ChevronRight className="h-7 w-7 text-zinc-400" />

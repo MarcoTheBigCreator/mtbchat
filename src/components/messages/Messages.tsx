@@ -5,6 +5,7 @@ import Image from 'next/image';
 import PusherClient from 'pusher-js';
 import { cn, Message, toPusherKey } from '@/lib';
 import { format } from 'date-fns';
+import { useTheme } from 'next-themes';
 
 interface MessagesProps {
   sessionId: string;
@@ -51,10 +52,18 @@ export const Messages = ({
     return format(timestamp, 'HH:mm');
   };
 
+  const { theme } = useTheme();
+
   return (
     <div
       id="messages"
-      className="flex h-full flex-1 flex-col-reverse gap-4 p-4 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+      className={cn(
+        'flex h-full flex-1 flex-col-reverse gap-4 p-4 overflow-y-auto scrollbar-track-transparent scrollbar-thumb-rounded scrollbar-w-2 scrolling-touch',
+        {
+          'scrollbar-thumb-dark': theme === 'dark',
+          'scrollbar-thumb-blue': theme === 'light',
+        }
+      )}
     >
       <div ref={scrollDownRef} />
       {messages.map((message, index) => {
@@ -84,7 +93,8 @@ export const Messages = ({
                 <span
                   className={cn('px-4 py-2 rounded-lg inline-block', {
                     'bg-violet-700 text-white': isCurrentUser,
-                    'bg-gray-200 text-gray-900': !isCurrentUser,
+                    'bg-gray-200 text-gray-900 dark:bg-neutral-700 dark:text-gray-200':
+                      !isCurrentUser,
                     'rounded-br-none':
                       !hasNextMessageFromSameUser && isCurrentUser,
                     'rounded-bl-none':
@@ -92,7 +102,12 @@ export const Messages = ({
                   })}
                 >
                   {message.text}{' '}
-                  <span className="ml-2 text-xs text-gray-400">
+                  <span
+                    className={cn('ml-2 text-xs', {
+                      'text-gray-300': isCurrentUser,
+                      'text-gray-400 dark:text-neutral-400': !isCurrentUser,
+                    })}
+                  >
                     {formatTimestamp(message.timestamp)}
                   </span>
                 </span>

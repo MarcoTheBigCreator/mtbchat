@@ -58,7 +58,7 @@ export const AddFriendButton = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm">
       <label
         htmlFor="email"
-        className="block text-base font-medium leading-6 text-gray-900"
+        className="block text-base font-medium leading-6 text-gray-900 dark:text-gray-300"
       >
         Add friend by e-mail
       </label>
@@ -66,10 +66,12 @@ export const AddFriendButton = () => {
         <input
           {...register('email')}
           type="text"
-          className="lowercase block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+          className="lowercase block w-full rounded-md border-0 py-1.5 text-gray-900 bg-white dark:bg-neutral-800 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:ring-neutral-700 dark:placeholder:text-gray-300 focus:ring-2 focus:ring-inset focus:ring-violet-700 dark:focus:ring-violet-500 sm:text-sm sm:leading-6"
           placeholder="you@example.com"
         />
-        <Button>Add</Button>
+        <Button className="dark:bg-violet-700 dark:text-white dark:hover:bg-violet-600">
+          Add
+        </Button>
       </div>
       <p className="mt-1 text-base text-red-600">{errors.email?.message}</p>
       {showSuccessState && (
