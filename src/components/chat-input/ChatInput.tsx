@@ -32,8 +32,8 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
   };
 
   return (
-    <div className="border-t border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
-      <div className="relative flex md:block md:flex-1 overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-violet-700">
+    <div className="border-t border-gray-200 dark:border-neutral-700 px-4 pt-4 mb-2 sm:mb-0">
+      <div className="relative flex md:block md:flex-1 overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-neutral-600 focus-within:ring-2 focus-within:ring-violet-700 dark:focus-within:ring-violet-500">
         <TextareaAutosize
           ref={textareaRef}
           onKeyDown={(e) => {
@@ -46,18 +46,18 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder={`Message ${chatPartner.name}`}
-          className="block w-full resize-none border-0 bg-transparent text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:py-1.5 sm:text-sm sm:leading-6"
+          className="block w-full resize-none border-0 bg-transparent text-gray-900 placeholder:text-gray-400 dark:text-white dark:placeholder:text-gray-300 focus:ring-0 sm:py-1.5 sm:text-sm sm:leading-6"
         />
         <Button
-          className="block md:hidden bg-trasparent hover:bg-violet-700 group transition-all duration-100 ease-in-out"
+          className="block md:hidden bg-transparent dark:bg-transparent hover:bg-violet-700 dark:hover:bg-violet-500 group transition-all duration-100 ease-in-out"
           isLoading={isLoading}
           onClick={sendMessage}
           type="submit"
         >
           {!isLoading ? (
-            <Icons.Send className="h-6 w-auto text-violet-700 group-hover:text-white" />
+            <Icons.Send className="h-6 w-auto text-violet-700 dark:text-violet-500 group-hover:text-white" />
           ) : (
-            <span className="animate-pulse">Sending...</span>
+            <span className="animate-pulse text-white">Sending...</span>
           )}
         </Button>
 
@@ -73,15 +73,15 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
         <div className="absolute hidden md:flex right-0 bottom-0 justify-between py-2 pl-3 pr-2">
           <div className="flex-shrink-0">
             <Button
-              className="bg-trasparent hover:bg-violet-700 group transition-all duration-100 ease-in-out"
+              className="bg-trasparent dark:bg-transparent hover:bg-violet-700 dark:hover:bg-violet-500 group transition-all duration-100 ease-in-out"
               isLoading={isLoading}
               onClick={sendMessage}
               type="submit"
             >
               {!isLoading ? (
-                <Icons.Send className="h-6 w-auto text-violet-700 group-hover:text-white" />
+                <Icons.Send className="h-6 w-auto text-violet-700 dark:text-violet-500 group-hover:text-white" />
               ) : (
-                <span className="animate-pulse">Sending...</span>
+                <span className="animate-pulse textw">Sending...</span>
               )}
             </Button>
           </div>

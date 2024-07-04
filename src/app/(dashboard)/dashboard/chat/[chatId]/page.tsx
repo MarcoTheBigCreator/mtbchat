@@ -1,13 +1,42 @@
+import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
+import Image from 'next/image';
 import { auth } from '@/auth.config';
 import { getChatMessages } from '@/actions';
-import Image from 'next/image';
 import { Messages } from '@/components';
 import { fetchRedis } from '@/helpers';
 
 interface Props {
   params: {
     chatId: string;
+  };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { chatId } = params;
+
+  return {
+    metadataBase: new URL(
+      `https://mtbchat.vercel.app/dashboard/chat/${chatId}`
+    ),
+    title: `Chat`,
+    description: 'Chat with your friends in real-time!',
+    openGraph: {
+      title: `Chat`,
+      description: 'Chat with your friends in real-time!',
+      url: `https://mtbchat.vercel.app/dashboard/chat/${chatId}`,
+      images: [
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720073471/Portfolio/h3vu4u6lubfjvr9on717.png`,
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Chat`,
+      description: 'Chat with your friends in real-time!',
+      images: [
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720073471/Portfolio/h3vu4u6lubfjvr9on717.png`,
+      ],
+    },
   };
 }
 
@@ -42,7 +71,7 @@ export default async function ChatPage({ params }: Props) {
 
   return (
     <div className="flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-15rem)] md:max-h-[calc(100vh-10rem)]">
-      <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200 px-4">
+      <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200 dark:border-neutral-700 px-4">
         <div className="relative flex items-center space-x-4">
           <div className="relative">
             <div className="relative w-8 sm:w-12 h-8 sm:h-12">
@@ -57,11 +86,11 @@ export default async function ChatPage({ params }: Props) {
           </div>
           <div className="flex flex-col leading-tight">
             <div className="text-lg md:text-xl flex items-center">
-              <span className="text-gray-700 mr-3 font-semibold">
+              <span className="text-gray-700 dark:text-white mr-3 font-semibold">
                 {chatPartner.name}
               </span>
             </div>
-            <span className="text-xs md:text-sm text-gray-600">
+            <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
               {chatPartner.email}
             </span>
           </div>

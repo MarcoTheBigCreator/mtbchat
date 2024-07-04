@@ -10,7 +10,7 @@ import {
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { Button, buttonVariants } from '../ui/Button';
+import { Button } from '../ui/Button';
 import { Icons } from '../icons/Icons';
 import { titleFont } from '@/config/fonts';
 import { usePathname } from 'next/navigation';
@@ -20,6 +20,7 @@ import { FriendRequestsSidebarOptions } from '../friend-requests-sidebar/FriendR
 import type { Session } from 'next-auth';
 import { SidebarOption } from '@/types/typings';
 import { truncateText } from '@/lib';
+import { ThemeSwitch } from '../theme-switch/ThemeSwitch';
 
 interface MobileChatLayoutProps {
   friends: User[];
@@ -43,22 +44,29 @@ export const MobileChatLayout = ({
   }, [pathname]);
 
   return (
-    <div className="fixed bg-zinc-50 border-b border-zinc-200 top-0 z-50 inset-x-0 py-2 px-4">
+    <div className="fixed bg-zinc-50 dark:bg-neutral-900 border-b border-zinc-200 dark:border-neutral-700 top-0 z-50 inset-x-0 py-2 px-4">
       <div className="w-full flex justify-between items-center">
         <Link href="/dashboard">
-          <Icons.Logo className="h-[2rem] w-[2rem] text-black mx-4" />
+          <Icons.Logo className="h-[2rem] w-[2rem] text-black dark:text-white hover:text-violet-700 dark:hover:text-violet-500 mx-4" />
         </Link>
-        <span className={`${titleFont.className} text-black text-xl`}>
+        <span
+          className={`${titleFont.className} text-black dark:text-white text-xl`}
+        >
           MTBCHAT
         </span>
         <Button
           onClick={() => setOpen(true)}
-          className="bg-transparent hover:bg-transparent text-black gap-4"
+          className="bg-transparent dark:bg-transparent hover:bg-transparent dark:hover:bg-transparent text-black dark:text-white gap-4"
         >
           <Menu className="h-8 w-8" />
         </Button>
       </div>
-      <Dialog as="div" className="relative z-10" open={open} onClose={setOpen}>
+      <Dialog
+        as="div"
+        className="relative z-10 bg-white dark:bg-neutral-900"
+        open={open}
+        onClose={setOpen}
+      >
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-y-hidden">
@@ -73,16 +81,19 @@ export const MobileChatLayout = ({
                 leaveTo="-translate-x-full"
               >
                 <DialogPanel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col overflow-y-auto bg-white py-6 shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-auto bg-white dark:bg-neutral-900  py-6 shadow-xl">
                     <div className="px-4 sm:px-6 pt-16">
                       <div className="flex items-start justify-between">
-                        <DialogTitle className="text-lg font-semibold leading-6 text-gray-900">
+                        <div>
+                          <ThemeSwitch />
+                        </div>
+                        <DialogTitle className="text-lg font-semibold leading-6 text-gray-900 dark:text-white">
                           Dashboard
                         </DialogTitle>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+                            className="rounded-md bg-white dark:bg-neutral-900 text-gray-400 dark:text-gray-300 hover:text-gray-500 dark:hover:text-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
                             onClick={() => setOpen(false)}
                           >
                             <span className="sr-only">Close panel</span>
@@ -91,89 +102,89 @@ export const MobileChatLayout = ({
                         </div>
                       </div>
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {/* Content */}
+                    {/* Content */}
 
-                      <ul role="list" className="grid grid-rows-2 gap-y-56">
-                        <div className="space-y-7">
-                          <li>
-                            {friends.length > 0 ? (
-                              <div className="text-sm font-semibold leading-6 text-gray-400 mb-2">
-                                Your chats
-                              </div>
-                            ) : null}
-                            <SidebarChatList
-                              friends={friends}
-                              sessionId={session.user.id}
-                            />
-                          </li>
-
-                          <li>
-                            <div className="text-sm font-semibold leading-6 text-gray-400">
-                              Overview
+                    <ul
+                      role="list"
+                      className="grid grid-rows-2 grow mt-6 flex-1 px-4 sm:px-6"
+                    >
+                      <div className="space-y-7">
+                        <li>
+                          {friends.length > 0 ? (
+                            <div className="text-sm font-semibold leading-6 text-gray-400 dark:text-white mb-2">
+                              Your chats
                             </div>
-                            <ul role="list" className="-mx-2 mt-2 space-y-1">
-                              {sidebarOptions.map((option) => {
-                                const Icon = Icons[option.icon];
-                                return (
-                                  <li key={option.name}>
-                                    <Link
-                                      href={option.href}
-                                      className="text-gray-700 hover:text-violet-700 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-base leading-6 font-semibold"
-                                    >
-                                      <span className="text-gray-400 border-gray-200 group-hover:border-violet-700 group-hover:text-violet-700 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white">
-                                        <Icon className="h-4 w-4" />
-                                      </span>
-                                      <span className="truncate">
-                                        {option.name}
-                                      </span>
-                                    </Link>
-                                  </li>
-                                );
-                              })}
+                          ) : null}
+                          <SidebarChatList
+                            friends={friends}
+                            sessionId={session.user.id}
+                          />
+                        </li>
 
-                              <li>
-                                <FriendRequestsSidebarOptions
-                                  initialUnseenRequestCount={unseenRequestCount}
-                                  sessionId={session.user.id}
-                                />
-                              </li>
-                            </ul>
-                          </li>
-                        </div>
+                        <li>
+                          <div className="text-sm font-semibold leading-6 text-gray-400 dark:text-white">
+                            Overview
+                          </div>
+                          <ul role="list" className="-mx-2 mt-2 space-y-1">
+                            {sidebarOptions.map((option) => {
+                              const Icon = Icons[option.icon];
+                              return (
+                                <li key={option.name}>
+                                  <Link
+                                    href={option.href}
+                                    className="text-gray-700 hover:text-violet-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-violet-500 dark:hover:bg-neutral-800 group flex gap-x-3 rounded-md p-2 text-base leading-6 font-semibold"
+                                  >
+                                    <span className="text-gray-400 border-gray-200 group-hover:border-violet-700 group-hover:text-violet-700 dark:text-neutral-300 dark:group-hover:text-neutral-300 dark:border-0 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white dark:bg-violet-600 dark:group-hover:bg-violet-500">
+                                      <Icon className="h-4 w-4" />
+                                    </span>
+                                    <span className="truncate">
+                                      {option.name}
+                                    </span>
+                                  </Link>
+                                </li>
+                              );
+                            })}
 
-                        <li className="-ml-6 mt-auto flex items-center">
-                          <div className="flex flex-1 items-center gap-x-4 px-6 py-3 text-base font-semibold leading-6 text-gray-900">
-                            <div className="relative h-8 w-8 bg-gray-50">
-                              <Image
-                                fill
-                                referrerPolicy="no-referrer"
-                                className="rounded-full"
-                                src={session.user.image || ''}
-                                alt="Your profile picture"
+                            <li>
+                              <FriendRequestsSidebarOptions
+                                initialUnseenRequestCount={unseenRequestCount}
+                                sessionId={session.user.id}
                               />
-                            </div>
-
-                            <span className="sr-only">Your profile</span>
-                            <div className="flex flex-col">
-                              <span aria-hidden="true">
-                                {truncateText(session.user.name)}
-                              </span>
-                              <span
-                                className="text-xs text-zinc-400"
-                                aria-hidden="true"
-                              >
-                                {truncateText(session.user.email)}
-                              </span>
-                            </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </div>
+                      <li className="-ml-6 mt-auto flex items-center">
+                        <div className="flex flex-1 items-center gap-x-4 px-6 py-3 text-base font-semibold leading-6 text-gray-900 dark:text-white">
+                          <div className="relative h-8 w-8">
+                            <Image
+                              fill
+                              referrerPolicy="no-referrer"
+                              className="rounded-full"
+                              src={session.user.image || ''}
+                              alt="Your profile picture"
+                            />
                           </div>
 
-                          <SignOutButton className="h-full aspect-square" />
-                        </li>
-                      </ul>
+                          <span className="sr-only">Your profile</span>
+                          <div className="flex flex-col">
+                            <span aria-hidden="true">
+                              {truncateText(session.user.name)}
+                            </span>
+                            <span
+                              className="text-xs text-zinc-400 dark:text-gray-300"
+                              aria-hidden="true"
+                            >
+                              {truncateText(session.user.email)}
+                            </span>
+                          </div>
+                        </div>
 
-                      {/* content end */}
-                    </div>
+                        <SignOutButton className="h-full aspect-square" />
+                      </li>
+                    </ul>
+
+                    {/* content end */}
                   </div>
                 </DialogPanel>
               </TransitionChild>

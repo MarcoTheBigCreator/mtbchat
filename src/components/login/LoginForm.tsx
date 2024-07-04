@@ -3,33 +3,56 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
-import { Button, GoogleLogo } from '@/components';
+import { Button, GitHubLogo, GoogleLogo } from '@/components';
 
 export const LoginForm = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoadingGoogle, setIsLoadingGoogle] = useState<boolean>(false);
+  const [isLoadingGithub, setIsLoadingGithub] = useState<boolean>(false);
 
   async function loginWithGoogle() {
-    setIsLoading(true);
+    setIsLoadingGoogle(true);
 
     try {
       await signIn('google');
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
     } finally {
-      setIsLoading(false);
+      setIsLoadingGoogle(false);
+    }
+  }
+
+  async function loginWithGitHub() {
+    setIsLoadingGithub(true);
+
+    try {
+      await signIn('github');
+    } catch (error) {
+      toast.error('Something went wrong. Please try again.');
+    } finally {
+      setIsLoadingGithub(false);
     }
   }
 
   return (
     <>
       <Button
-        isLoading={isLoading}
+        isLoading={isLoadingGoogle}
         type="button"
         className="max-w-sm mx-auto w-full"
         onClick={loginWithGoogle}
       >
-        {isLoading ? null : <GoogleLogo />}
+        {isLoadingGoogle ? null : <GoogleLogo />}
         Google
+      </Button>
+
+      <Button
+        isLoading={isLoadingGithub}
+        type="button"
+        className="max-w-sm mx-auto w-full"
+        onClick={loginWithGitHub}
+      >
+        {isLoadingGithub ? null : <GitHubLogo />}
+        GitHub
       </Button>
     </>
   );

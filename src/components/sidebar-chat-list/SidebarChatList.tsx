@@ -99,7 +99,7 @@ export const SidebarChatList = ({
                 sessionId,
                 friend.id
               )}`}
-              className="text-gray-700 hover:text-violet-700 hover:bg-gray-50 group flex items-center gap-3 rounded-md p-2 text-base leading-6 font-semibold"
+              className="text-gray-700 hover:text-violet-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-violet-500 dark:hover:bg-neutral-800 group flex items-center gap-3 rounded-md p-2 text-base leading-6 font-semibold"
             >
               <Image
                 className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg "
