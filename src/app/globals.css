@@ -40,3 +40,17 @@
 .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
   border-radius: 0.25rem;
 }
+
+.icon-transition {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.icon-enter {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+.icon-enter-active {
+  opacity: 1;
+  transform: rotate(0deg);
+}
