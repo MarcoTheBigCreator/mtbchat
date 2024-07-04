@@ -13,6 +13,7 @@
 - Hosting: [Vercel](https://vercel.com/)
 
 ## Description
+MTBCHAT, a super fast chat application built with Next.js, Upstash and Pusher. Here you can chat with your friends in real-time. What are you waiting for? Join now!
 
 ### Running in Development
 
