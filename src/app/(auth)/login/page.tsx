@@ -1,5 +1,33 @@
+import { Metadata } from 'next';
 import { Icons, LoginForm } from '@/components';
 import { titleFont } from '@/config/fonts';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    metadataBase: new URL('https://mtbchat.vercel.app/login'),
+    title: 'Login',
+    description:
+      'Login to create an account and chat with your friends in real-time!',
+    openGraph: {
+      title: 'Login',
+      url: 'https://mtbchat.vercel.app/login',
+      description:
+        'Login to create an account and chat with your friends in real-time!',
+      images: [
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720072100/Portfolio/ygq5rnuz9vvsnuzvpq2l.png`,
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Login',
+      description:
+        'Login to create an account and chat with your friends in real-time!',
+      images: [
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720072100/Portfolio/ygq5rnuz9vvsnuzvpq2l.png`,
+      ],
+    },
+  };
+}
 
 export default function LoginPage() {
   return (

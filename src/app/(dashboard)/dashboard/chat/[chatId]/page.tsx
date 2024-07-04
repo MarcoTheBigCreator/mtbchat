@@ -1,13 +1,42 @@
+import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
+import Image from 'next/image';
 import { auth } from '@/auth.config';
 import { getChatMessages } from '@/actions';
-import Image from 'next/image';
 import { Messages } from '@/components';
 import { fetchRedis } from '@/helpers';
 
 interface Props {
   params: {
     chatId: string;
+  };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { chatId } = params;
+
+  return {
+    metadataBase: new URL(
+      `https://mtbchat.vercel.app/dashboard/chat/${chatId}`
+    ),
+    title: `Chat`,
+    description: 'Chat with your friends in real-time!',
+    openGraph: {
+      title: `Chat`,
+      description: 'Chat with your friends in real-time!',
+      url: `https://mtbchat.vercel.app/dashboard/chat/${chatId}`,
+      images: [
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720073471/Portfolio/h3vu4u6lubfjvr9on717.png`,
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Chat`,
+      description: 'Chat with your friends in real-time!',
+      images: [
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720073471/Portfolio/h3vu4u6lubfjvr9on717.png`,
+      ],
+    },
   };
 }
 

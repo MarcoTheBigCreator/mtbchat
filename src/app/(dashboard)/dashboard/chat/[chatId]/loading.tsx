@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 export default function LoadingPage() {
   return (
     <div className="flex flex-col h-full items-center">
-      <Skeleton className="mb-4" height={40} width={400} />
+      <Skeleton className="dark:bg-neutral-800 mb-4" height={40} width={400} />
       {/* chat messages */}
       <div className="flex-1 max-h-full overflow-y-scroll w-full">
         <div className="flex flex-col flex-auto h-full p-6">
@@ -15,20 +15,38 @@ export default function LoadingPage() {
                   <div className="col-start-6 col-end-13 p-3 rounded-lg">
                     <div className="flex items-center justify-start flex-row-reverse">
                       <div className="relative h-10 w-10">
-                        <Skeleton width={40} height={40} borderRadius={999} />
+                        <Skeleton
+                          className="dark:bg-neutral-800"
+                          width={40}
+                          height={40}
+                          borderRadius={999}
+                        />
                       </div>
                       <div className="relative mr-3 text-sm bg-violet-700 text-black py-2 px-4 rounded-xl">
-                        <Skeleton className="ml-2" width={150} height={20} />
+                        <Skeleton
+                          className="dark:bg-neutral-800 ml-2"
+                          width={150}
+                          height={20}
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="col-start-6 col-end-13 p-3 rounded-lg">
                     <div className="flex items-center justify-start flex-row-reverse">
                       <div className="relative h-10 w-10">
-                        <Skeleton width={40} height={40} borderRadius={999} />
+                        <Skeleton
+                          className="dark:bg-neutral-800"
+                          width={40}
+                          height={40}
+                          borderRadius={999}
+                        />
                       </div>
                       <div className="relative mr-3 text-sm bg-violet-700 text-black py-2 px-4 rounded-xl">
-                        <Skeleton className="ml-2" width={150} height={20} />
+                        <Skeleton
+                          className="dark:bg-neutral-800 ml-2"
+                          width={150}
+                          height={20}
+                        />
                       </div>
                     </div>
                   </div>
@@ -37,30 +55,57 @@ export default function LoadingPage() {
                   <div className="col-start-1 col-end-8 p-3 rounded-lg">
                     <div className="flex flex-row items-center">
                       <div className="relative h-10 w-10">
-                        <Skeleton width={40} height={40} borderRadius={999} />
+                        <Skeleton
+                          className="dark:bg-neutral-800"
+                          width={40}
+                          height={40}
+                          borderRadius={999}
+                        />
                       </div>
                       <div className="relative ml-3 text-sm bg-gray-200 dark:bg-neutral-700 py-2 px-4 rounded-xl">
-                        <Skeleton className="ml-2" width={150} height={20} />
+                        <Skeleton
+                          className="dark:bg-neutral-800 ml-2"
+                          width={150}
+                          height={20}
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="col-start-6 col-end-13 p-3 rounded-lg">
                     <div className="flex items-center justify-start flex-row-reverse">
                       <div className="relative h-10 w-10">
-                        <Skeleton width={40} height={40} borderRadius={999} />
+                        <Skeleton
+                          className="dark:bg-neutral-800"
+                          width={40}
+                          height={40}
+                          borderRadius={999}
+                        />
                       </div>
                       <div className="relative mr-3 text-sm bg-gray-200 dark:bg-neutral-700 text-black py-2 px-4 rounded-xl">
-                        <Skeleton className="ml-2" width={150} height={20} />
+                        <Skeleton
+                          className="dark:bg-neutral-800 ml-2"
+                          width={150}
+                          height={20}
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="col-start-1 col-end-8 p-3 rounded-lg">
                     <div className="flex flex-row items-center">
                       <div className="relative h-10 w-10">
-                        <Skeleton width={40} height={40} borderRadius={999} />
+                        <Skeleton
+                          className="dark:bg-neutral-800"
+                          width={40}
+                          height={40}
+                          borderRadius={999}
+                        />
                       </div>
                       <div className="relative ml-3 text-sm bg-gray-200 dark:bg-neutral-700 py-2 px-4 rounded-xl">
-                        <Skeleton className="ml-2" width={150} height={20} />
+                        <Skeleton
+                          className="dark:bg-neutral-800 ml-2"
+                          width={150}
+                          height={20}
+                        />
                       </div>
                     </div>
                   </div>
