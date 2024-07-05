@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       'Login to create an account and chat with your friends in real-time!',
     openGraph: {
-      title: 'Login',
+      title: 'Login | MTBCHAT',
       url: 'https://mtbchat.vercel.app/login',
       description:
         'Login to create an account and chat with your friends in real-time!',
@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Login',
+      title: 'Login | MTBCHAT',
       description:
         'Login to create an account and chat with your friends in real-time!',
       images: [

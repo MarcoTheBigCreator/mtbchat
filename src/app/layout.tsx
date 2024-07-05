@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Home | MTBCHAT',
     description:
-      'MTBCHAT, a super fast chat application built with Next.js, Upstash and Pusher. Here you can chat with your friends in real-time. What are you waiting for? Join now!',
+      'MTBCHAT, a super fast web chat application built with Next.js, Upstash and Pusher, where you can communicate with your friends in real-time. What are you waiting for? Join now!',
     url: 'https://mtbchat.vercel.app',
     siteName: 'MTBCHAT',
     type: 'website',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Home | MTBCHAT',
     description:
-      'MTBCHAT, a super fast chat application built with Next.js, Upstash and Pusher. Here you can chat with your friends in real-time. What are you waiting for? Join now!',
+      'MTBCHAT, a super fast web chat application built with Next.js, Upstash and Pusher, where you can communicate with your friends in real-time. What are you waiting for? Join now!',
     images: [
       `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720070596/Portfolio/gvojdfxzifvoiv7atb0x.png`,
     ],
