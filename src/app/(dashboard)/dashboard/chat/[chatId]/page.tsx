@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: 'Chat with your friends in real-time!',
     openGraph: {
       title: `Chat`,
-      description: 'Chat with your friends in real-time!',
+      description: 'Chat with your friends in real-time! | MTBCHAT',
       url: `https://mtbchat.vercel.app/dashboard/chat/${chatId}`,
       images: [
         `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720073471/Portfolio/h3vu4u6lubfjvr9on717.png`,
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: `Chat`,
-      description: 'Chat with your friends in real-time!',
+      description: 'Chat with your friends in real-time! | MTBCHAT',
       images: [
         `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720073471/Portfolio/h3vu4u6lubfjvr9on717.png`,
       ],

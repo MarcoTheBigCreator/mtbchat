@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { auth } from '@/auth.config';
 import { getFriendsByUserId } from '@/actions';
 import { fetchRedis } from '@/helpers';
@@ -7,6 +8,36 @@ import { titleFont } from '@/config/fonts';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    metadataBase: new URL('https://mtbchat.vercel.app/dashboard'),
+    title: 'Home',
+    description:
+      'MTBCHAT, a super fast chat application built with Next.js, Upstash and Pusher. Here you can chat with your friends in real-time. What are you waiting for? Join now!',
+    openGraph: {
+      title: 'Home | MTBCHAT',
+      description:
+        'MTBCHAT, a super fast web chat application built with Next.js, Upstash and Pusher, where you can communicate with your friends in real-time. What are you waiting for? Join now!',
+      url: 'https://mtbchat.vercel.app/dashboard',
+      siteName: 'MTBCHAT',
+      type: 'website',
+      locale: 'en_US',
+      images: [
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720070596/Portfolio/gvojdfxzifvoiv7atb0x.png`,
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Home | MTBCHAT',
+      description:
+        'MTBCHAT, a super fast web chat application built with Next.js, Upstash and Pusher, where you can communicate with your friends in real-time. What are you waiting for? Join now!',
+      images: [
+        `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720070596/Portfolio/gvojdfxzifvoiv7atb0x.png`,
+      ],
+    },
+  };
+}
 
 export default async function Home() {
   const session = await auth();

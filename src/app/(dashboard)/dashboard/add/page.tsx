@@ -5,10 +5,10 @@ import { titleFont } from '@/config/fonts';
 export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL('https://mtbchat.vercel.app/dashboard/add'),
-    title: 'Add a new friend!',
+    title: 'Add a new friend! ',
     description: 'Add a friend and start chatting!',
     openGraph: {
-      title: 'Add a new friend!',
+      title: 'Add a new friend! | MTBCHAT',
       description: 'Add a friend and start chatting!',
       url: 'https://mtbchat.vercel.app/dashboard/add',
       images: [
@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Add a new friend!',
+      title: 'Add a new friend! | MTBCHAT',
       description: 'Add a friend and start chatting!',
       images: [
         `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720072460/Portfolio/nibiq11insld8gooekgo.png`,

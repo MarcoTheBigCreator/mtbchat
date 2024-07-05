@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: 'Accept or reject friend requests!',
     openGraph: {
       title: 'Friend Requests',
-      description: 'Accept or reject friend requests!',
+      description: 'Accept or reject friend requests! | MTBCHAT',
       url: 'https://mtbchat.vercel.app/dashboard/requests',
       images: [
         `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720074077/Portfolio/sxcdnltc1f0pogijysut.png`,
@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: 'Friend Requests',
-      description: 'Accept or reject friend requests!',
+      description: 'Accept or reject friend requests! | MTBCHAT',
       images: [
         `https://res.cloudinary.com/dmlpgks2h/image/upload/v1720074077/Portfolio/sxcdnltc1f0pogijysut.png`,
       ],
