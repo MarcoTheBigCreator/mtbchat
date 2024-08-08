@@ -1,9 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import { addFriendValidator } from '@/lib';
 import { Button } from '../ui/Button';
 import axios, { AxiosError } from 'axios';
-import { useState } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,13 +11,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 type FormData = z.infer<typeof addFriendValidator>;
 
 export const AddFriendButton = () => {
-  const [showSuccessState, setShowSuccessState] = useState<boolean>(false);
+  const [showSuccessState, setShowSuccessState] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     setError,
     formState: { errors },
+    clearErrors,
   } = useForm<FormData>({
     resolver: zodResolver(addFriendValidator),
   });
@@ -28,12 +29,18 @@ export const AddFriendButton = () => {
 
       await axios.post('/api/friends/add', { email: validatedEmail });
 
-      setShowSuccessState(true);
+      setShowSuccessState('Friend request sent!');
+      setTimeout(() => {
+        setShowSuccessState(null);
+      }, 1500); // Mensaje de éxito desaparece después de 3 segundos
     } catch (error) {
       if (error instanceof z.ZodError) {
         setError('email', {
           message: error.message,
         });
+        setTimeout(() => {
+          clearErrors('email');
+        }, 1500); // Mensaje de error desaparece después de 3 segundos
         return;
       }
 
@@ -41,12 +48,18 @@ export const AddFriendButton = () => {
         setError('email', {
           message: error.response?.data,
         });
+        setTimeout(() => {
+          clearErrors('email');
+        }, 1500); // Mensaje de error desaparece después de 3 segundos
         return;
       }
 
       setError('email', {
         message: 'An unknown error occurred',
       });
+      setTimeout(() => {
+        clearErrors('email');
+      }, 1500); // Mensaje de error desaparece después de 3 segundos
     }
   };
 
@@ -75,7 +88,7 @@ export const AddFriendButton = () => {
       </div>
       <p className="mt-1 text-base text-red-600">{errors.email?.message}</p>
       {showSuccessState && (
-        <p className="mt-1 text-base text-green-600">Friend request sent!</p>
+        <p className="mt-1 text-base text-green-600">{showSuccessState}</p>
       )}
     </form>
   );
