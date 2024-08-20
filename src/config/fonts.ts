@@ -1,12 +1,4 @@
-import {
-  Poppins,
-  Outfit,
-  Libre_Franklin,
-  Montserrat_Alternates,
-  Roboto,
-  Montserrat_Subrayada,
-  Montserrat,
-} from 'next/font/google';
+import { Poppins, Montserrat } from 'next/font/google';
 
 export const poppins = Poppins({
   subsets: ['latin'],
