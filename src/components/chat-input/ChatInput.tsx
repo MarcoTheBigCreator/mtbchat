@@ -49,7 +49,7 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
           className="block w-full resize-none border-0 bg-transparent text-gray-900 placeholder:text-gray-400 dark:text-white dark:placeholder:text-gray-300 focus:ring-0 sm:py-1.5 sm:text-sm sm:leading-6"
         />
         <Button
-          className="block md:hidden bg-transparent dark:bg-transparent hover:bg-violet-700 dark:hover:bg-violet-500 group transition-all duration-100 ease-in-out"
+          className="block md:hidden self-end bg-transparent dark:bg-transparent hover:bg-violet-700 dark:hover:bg-violet-500 group transition-all duration-100 ease-in-out"
           isLoading={isLoading}
           onClick={sendMessage}
           type="submit"
@@ -57,7 +57,7 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
           {!isLoading ? (
             <Icons.Send className="h-6 w-auto text-violet-700 dark:text-violet-500 group-hover:text-white" />
           ) : (
-            <span className="animate-pulse text-white">Sending...</span>
+            <></>
           )}
         </Button>
 
@@ -73,7 +73,7 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
         <div className="absolute hidden md:flex right-0 bottom-0 justify-between py-2 pl-3 pr-2">
           <div className="flex-shrink-0">
             <Button
-              className="bg-trasparent dark:bg-transparent hover:bg-violet-700 dark:hover:bg-violet-500 group transition-all duration-100 ease-in-out"
+              className="bg-transparent dark:bg-transparent hover:bg-violet-700 dark:hover:bg-violet-500 group transition-all duration-100 ease-in-out"
               isLoading={isLoading}
               onClick={sendMessage}
               type="submit"
@@ -81,7 +81,7 @@ export const ChatInput = ({ chatId, chatPartner }: ChatInputProps) => {
               {!isLoading ? (
                 <Icons.Send className="h-6 w-auto text-violet-700 dark:text-violet-500 group-hover:text-white" />
               ) : (
-                <span className="animate-pulse textw">Sending...</span>
+                <span className="animate-pulse text-white">Sending...</span>
               )}
             </Button>
           </div>
