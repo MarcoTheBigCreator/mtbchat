@@ -41,6 +41,10 @@ as well.
 - `npm run lint` checks ESLint separately from the production build.
 - `npm run typecheck` generates Next.js route types and checks TypeScript.
 - `npm run build` creates the production build.
+- `npm run check:redis` validates the Redis REST URL, DNS, and token with a
+  read-only PING. It loads `.env` and `.env.local`; exported environment variables
+  take precedence. Run this for the environment being deployed before testing
+  OAuth sign-in. Anonymous smoke tests do not exercise the Redis adapter.
 - `npm run test:smoke` checks the running app at `http://127.0.0.1:3000`.
   Start it with `npm start` first, or set `SMOKE_BASE_URL` for another local port.
   These checks use anonymous requests and do not create users or messages.
@@ -51,6 +55,13 @@ After changing authentication or runtime dependencies, verify Google and GitHub
 sign-in, session renewal, sign-out, friend requests, and real-time messages with
 two accounts. Unauthenticated visitors must be redirected from dashboard routes,
 and the friend and message API endpoints must return HTTP 401.
+
+If sign-in logs contain `AdapterError`, `fetch failed`, and `ENOTFOUND` for an
+Upstash hostname, check that the database is active and copy its current REST URL
+and token from Upstash. Update `UPSTASH_REDIS_REST_URL` and
+`UPSTASH_REDIS_REST_TOKEN` together in the local environment and in the applicable
+Vercel environment (Production or Preview), then redeploy so the change takes
+effect. A missing DNS record cannot be repaired by changing OAuth callbacks.
 
 The current production dependency tree has no known npm audit vulnerabilities.
 The complete audit still flags the ESLint toolchain because its plugins use
