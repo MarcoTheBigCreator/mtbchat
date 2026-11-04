@@ -7,13 +7,13 @@ import { Messages } from '@/components';
 import { fetchRedis } from '@/helpers';
 
 interface Props {
-  params: {
+  params: Promise<{
     chatId: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { chatId } = params;
+  const { chatId } = await params;
 
   return {
     metadataBase: new URL(
@@ -41,11 +41,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ChatPage({ params }: Props) {
-  const { chatId } = params;
+  const { chatId } = await params;
 
   const session = await auth();
-  // just in case middleware fails
-  if (!session) {
+  // Validate the session here as well as in the proxy.
+  if (!session?.user?.id) {
     redirect('/login');
   }
 

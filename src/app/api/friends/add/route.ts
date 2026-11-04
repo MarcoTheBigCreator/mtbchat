@@ -6,6 +6,12 @@ import { z } from 'zod';
 
 export async function POST(req: Request) {
   try {
+    const session = await auth();
+
+    if (!session?.user?.id) {
+      return new NextResponse('Unauthorized', { status: 401 });
+    }
+
     const body = await req.json();
 
     const redis = await db();
@@ -16,16 +22,8 @@ export async function POST(req: Request) {
       `user:email:${emailToAdd}`
     )) as string;
 
-    console.log('idToAdd', idToAdd);
-
     if (!idToAdd) {
       return new NextResponse('This person does not exist', { status: 400 });
-    }
-
-    const session = await auth();
-
-    if (!session) {
-      return new NextResponse('Unauthorized', { status: 401 });
     }
 
     if (session.user.id === idToAdd) {

@@ -5,18 +5,18 @@ import { notFound, redirect } from 'next/navigation';
 
 interface Props {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     chatId: string;
-  };
+  }>;
 }
 
 export default async function ChatLayout({ children, params }: Props) {
-  const { chatId } = params;
+  const { chatId } = await params;
 
   const session = await auth();
 
-  // just in case middleware fails
-  if (!session) {
+  // Validate the session here as well as in the proxy.
+  if (!session?.user?.id) {
     redirect('/login');
   }
 

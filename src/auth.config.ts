@@ -59,24 +59,27 @@ export const authConfig: NextAuthConfig = {
     }),
   ],
   callbacks: {
-    authorized({ auth }) {
-      const isAuthenticated = !!auth?.user;
-
-      return isAuthenticated;
-    },
     async jwt({ token, user }) {
+      if (user?.id) {
+        token.id = user.id;
+      }
+
+      if (!token.id) {
+        return null;
+      }
+
       const dbUserResult = (await fetchRedis('get', `user:${token.id}`)) as
         | string
         | null;
 
       if (!dbUserResult) {
-        token.id = user.id!;
         return token;
       }
 
       const dbUser = JSON.parse(dbUserResult) as User;
 
       return {
+        ...token,
         id: dbUser.id,
         name: dbUser.name,
         email: dbUser.email,
@@ -92,8 +95,8 @@ export const authConfig: NextAuthConfig = {
       }
       return session;
     },
-    redirect() {
-      return '/dashboard';
+    redirect({ baseUrl }) {
+      return `${baseUrl}/dashboard`;
     },
   },
 };

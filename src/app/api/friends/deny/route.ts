@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const session = await auth();
     const redis = await db();
 
-    if (!session) {
+    if (!session?.user?.id) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
