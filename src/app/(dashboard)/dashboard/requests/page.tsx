@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RequestsPage() {
   const session = await auth();
 
-  if (!session) {
+  if (!session?.user?.id) {
     notFound();
   }
 

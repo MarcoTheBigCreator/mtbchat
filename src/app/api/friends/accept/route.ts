@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     // auth verification
     const session = await auth();
 
-    if (!session) {
+    if (!session?.user?.id) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 

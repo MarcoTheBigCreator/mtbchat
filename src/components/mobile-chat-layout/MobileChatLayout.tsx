@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Dialog,
   DialogPanel,
@@ -38,10 +38,12 @@ export const MobileChatLayout = ({
   const [open, setOpen] = useState<boolean>(false);
 
   const pathname = usePathname();
+  const [previousPathname, setPreviousPathname] = useState(pathname);
 
-  useEffect(() => {
+  if (pathname !== previousPathname) {
+    setPreviousPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <div className="fixed bg-zinc-50 dark:bg-neutral-900 border-b border-zinc-200 dark:border-neutral-700 top-0 z-50 inset-x-0 py-2 px-4">

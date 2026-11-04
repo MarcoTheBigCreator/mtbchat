@@ -32,7 +32,7 @@ export default async function DashboardLayout({
   const session = await auth();
 
   // just in case
-  if (!session) {
+  if (!session?.user?.id) {
     redirect('/login');
   }
 

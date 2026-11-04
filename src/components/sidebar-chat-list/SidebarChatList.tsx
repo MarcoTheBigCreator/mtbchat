@@ -27,6 +27,20 @@ export const SidebarChatList = ({
 
   const [useenMessages, setUseenMessages] = useState<Message[]>([]);
   const [activeChats, setActiveChats] = useState<User[]>(friends);
+  const [previousPathname, setPreviousPathname] = useState(pathname);
+
+  if (pathname !== previousPathname) {
+    setPreviousPathname(pathname);
+    if (pathname?.startsWith('/dashboard/chat/')) {
+      setUseenMessages((prev) =>
+        prev.filter(
+          (message) =>
+            pathname !==
+            `/dashboard/chat/${chatHrefConstructor(sessionId, message.senderId)}`
+        )
+      );
+    }
+  }
 
   useEffect(() => {
     const pusherClient = new PusherClient(
@@ -77,17 +91,9 @@ export const SidebarChatList = ({
     };
   }, [pathname, sessionId, router]);
 
-  useEffect(() => {
-    if (pathname?.includes('chat')) {
-      setUseenMessages((prev) => {
-        return prev.filter((msg) => !pathname.includes(msg.senderId));
-      });
-    }
-  }, [pathname]);
-
   return (
     <ul role="list" className="max-h-[25rem] overflow-y-auto -mx-2 space-y-1">
-      {activeChats.sort().map((friend) => {
+      {[...activeChats].sort().map((friend) => {
         const unseenMessagesCount = useenMessages.filter((unseenMsg) => {
           return unseenMsg.senderId === friend.id;
         }).length;
